@@ -46,8 +46,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
-        radius: 18, // Adjust size
-       // backgroundColor: Colors.transparent, 
+        radius: 18, 
         backgroundImage: AssetImage('assets/person.png'), // No color overlay
       ),
             label: "Profile",

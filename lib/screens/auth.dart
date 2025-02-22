@@ -17,7 +17,6 @@ class _AuthscreenState extends State<Authscreen> {
   @override
   Widget build(BuildContext context) {
    
-//  final VoidCallback onSignIn; // Callback to notify sign-in
 Future<void> showSuccessDialog(BuildContext context) async {
   User? user = FirebaseAuth.instance.currentUser;
   return showDialog(
@@ -44,8 +43,7 @@ Future<void> showSuccessDialog(BuildContext context) async {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close the dialog
-              // Navigate to BottomNavBar after dialog is closed
+              Navigator.pop(context); 
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => BottomNavBar()),
               );
@@ -67,35 +65,29 @@ Future<void> showSuccessDialog(BuildContext context) async {
 
 Future<void> _handleGoogleSignIn(BuildContext context) async {
   try {
-    // Step 1: Sign in with Google
+  
     final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-    if (gUser == null) return; // User canceled sign-in
-
-    // Step 2: Get Google authentication details
+    if (gUser == null) return;
     final GoogleSignInAuthentication gAuth = await gUser.authentication;
 
-    // Step 3: Create a Firebase credential
     final credential = GoogleAuthProvider.credential(
       accessToken: gAuth.accessToken,
       idToken: gAuth.idToken,
     );
 
-    // Step 4: Sign in to Firebase with the Google credential
     final userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
 
-    // Step 5: Get the signed-in user
     final user = userCredential.user;
     if (user == null) return;
 
-    // Step 6: Store user data in Firestore
     await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
       'email': user.email, 
-      'displayName': user.displayName, // Username
-      'photoURL': user.photoURL, // Profile Picture URL
+      'displayName': user.displayName, 
+      'photoURL': user.photoURL, 
     });
 
-    // Step 7: Show Success Dialog and then Navigate to Home Screen
+
 if (mounted) {
   setState(() {
     showSuccessDialog(context);

@@ -114,14 +114,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     CircleAvatar(
                         radius: 30,
                        backgroundImage:user?.photoURL != null
-                  ? NetworkImage(user!.photoURL!) // Load profile image
+                  ? NetworkImage(user!.photoURL!)
                   : null,
                    child: user?.photoURL == null
-                  ? Icon(Icons.person, size: 50) // Fallback icon
+                  ? Icon(Icons.person, size: 50) 
                   : null,
                            ),
 
-                    SizedBox(width: 16), // Fixed SizedBox syntax
+                    SizedBox(width: 16), 
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

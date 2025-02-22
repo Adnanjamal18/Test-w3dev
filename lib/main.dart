@@ -5,10 +5,12 @@ import 'package:interntest/firebase_options.dart';
 import 'package:interntest/screens/auth.dart';
 import 'package:interntest/screens/tabs.dart';
 import 'package:provider/provider.dart';
-
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+   tz.initializeTimeZones(); 
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
